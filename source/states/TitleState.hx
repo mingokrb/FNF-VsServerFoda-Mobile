@@ -320,7 +320,7 @@ class TitleState extends MusicBeatState
 		sfSpr = new FlxSprite(0, FlxG.height * 0.52).loadGraphic(Paths.image('serverfoda_logo'));
 		add(sfSpr);
 		sfSpr.visible = false;
-		sfSpr.setGraphicSize(Std.int(sfSpr.width * 10.8));
+		sfSpr.setGraphicSize(Std.int(sfSpr.width * 5.8));
 		sfSpr.updateHitbox();
 		sfSpr.screenCenter(X);
 		sfSpr.antialiasing = false;
