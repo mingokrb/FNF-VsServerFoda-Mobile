@@ -374,12 +374,12 @@ class TitleState extends MusicBeatState
 
 		//var pressedEnter:Bool = FlxG.keys.justPressed.ENTER || controls.ACCEPT;
 
-		#if FLX_TOUCH
+		/*#if FLX_TOUCH
 		for (touch in FlxG.touches.list)
 		{
 			if (touch.justPressed)
 			{
-				//pressedEnter = true;
+				pressedEnter = true;
 			}
 		}
 		#end
@@ -389,13 +389,13 @@ class TitleState extends MusicBeatState
 		if (gamepad != null)
 		{
 			if (gamepad.justPressed.START)
-				//pressedEnter = true;
+				pressedEnter = true;
 
 			#if switch
 			if (gamepad.justPressed.B)
-				//pressedEnter = true;
+				pressedEnter = true;
 			#end
-		}
+		}*/
 		
 		if (newTitle) {
 			titleTimer += FlxMath.bound(elapsed, 0, 1);
