@@ -10,5 +10,7 @@ Port mobile oficial de **Vs. Server Foda**, um mod brasileiro de Friday Night Fu
 * Depois que o processo for concluído, é só jogar e se divertir!
 
 # Créditos
-* [Mobile Porting Team](https://github.com/MobilePorting)
+## Vs. Server Foda
 * Em breve.
+## Psych Engine Mobile
+* [Mobile Porting Team](https://github.com/MobilePorting)
