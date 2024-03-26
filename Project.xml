@@ -2,7 +2,7 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 
-	<app title="Friday Night Funkin': Psych Engine" file="PsychEngine" packageName="com.shadowmario.psychengine" package="com.shadowmario.psychengine" main="Main" version="0.2.8" company="ShadowMario" />
+	<app title="Vs. Server Foda" file="ServerFoda" packageName="com.sf.vsf" package="com.sf.vsf" main="Main" version="0.1.0" company="Server Foda" />
 
 	<!--Switch Export with Unique ApplicationID and Icon-->
 	<set name="APP_ID" value="0x0100f6c013bbc000" />
@@ -27,7 +27,7 @@
 	<define name="DISCORD_ALLOWED" if="desktop" unless="hl"/>
 	<define name="TRANSLATIONS_ALLOWED" />	
 	<define name="SHOW_LOADING_SCREEN" />
-	<define name="PSYCH_WATERMARKS"/> <!-- DELETE THIS TO REMOVE THE PSYCH LOGO FROM LOADING SCREEN -->
+	<!-- define name="PSYCH_WATERMARKS"/> !-- DELETE THIS TO REMOVE THE PSYCH LOGO FROM LOADING SCREEN -->
 	<define name="VIDEOS_ALLOWED" if="desktop || mobile" unless="32bits || hl || NOVIDEO || rpi"/> <!-- i'll keep this cuz it makes vscode think i don't use videos -->
 	<define name="ADVANCED_VIDEO_FUNCTIONS" if="VIDEOS_ALLOWED"/>
         <define name="CUSTOM_SHADERS_ALLOWED" if="LUA_ALLOWED"/>
