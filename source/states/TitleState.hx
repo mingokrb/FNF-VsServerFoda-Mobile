@@ -559,6 +559,7 @@ class TitleState extends MusicBeatState
 			else
 				gfDance.animation.play('danceLeft');
 		}
+		var sound:FlxSound = null;
 
 		if(!closedState) {
 			sickBeats++;
