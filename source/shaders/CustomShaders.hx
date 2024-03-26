@@ -194,10 +194,10 @@ class ChromaticAberrationShader extends FlxShader
 
 		void main()
 		{
-			vec4 col1 = texture2D(bitmap, openfl_TextureCoordv.st - vec2(rOffset, 0.0));
-			vec4 col2 = texture2D(bitmap, openfl_TextureCoordv.st - vec2(gOffset, 0.0));
-			vec4 col3 = texture2D(bitmap, openfl_TextureCoordv.st - vec2(bOffset, 0.0));
-			vec4 toUse = texture2D(bitmap, openfl_TextureCoordv);
+			vec4 col1 = flixel_texture2D(bitmap, openfl_TextureCoordv.st - vec2(rOffset, 0.0));
+			vec4 col2 = flixel_texture2D(bitmap, openfl_TextureCoordv.st - vec2(gOffset, 0.0));
+			vec4 col3 = flixel_texture2D(bitmap, openfl_TextureCoordv.st - vec2(bOffset, 0.0));
+			vec4 toUse = flixel_texture2D(bitmap, openfl_TextureCoordv);
 			toUse.r = col1.r;
 			toUse.g = col2.g;
 			toUse.b = col3.b;
@@ -265,11 +265,11 @@ class Scanline extends FlxShader
 			if (mod(floor(openfl_TextureCoordv.y * openfl_TextureSize.y / scale), 2.0) == 0.0 ){
 				float bitch = 1.0;
 	
-				vec4 texColor = texture2D(bitmap, openfl_TextureCoordv);
+				vec4 texColor = flixel_texture2D(bitmap, openfl_TextureCoordv);
 				if (lockAlpha) bitch = texColor.a;
 				gl_FragColor = vec4(0.0, 0.0, 0.0, bitch);
 			}else{
-				gl_FragColor = texture2D(bitmap, openfl_TextureCoordv);
+				gl_FragColor = flixel_texture2D(bitmap, openfl_TextureCoordv);
 			}
 		}')
 	public function new()
@@ -327,7 +327,7 @@ class Tiltshift extends FlxShader
 					temp_tcoord.y += offsY * amount * stepSize;
 		 
 					// accumulate the sample 
-					blurred += texture2D(bitmap, temp_tcoord);
+					blurred += flixel_texture2D(bitmap, temp_tcoord);
 				}
 			} 
 				
@@ -358,7 +358,7 @@ class GreyscaleShader extends FlxShader
 	@:glFragmentSource('
 	#pragma header
 	void main() {
-		vec4 color = texture2D(bitmap, openfl_TextureCoordv);
+		vec4 color = flixel_texture2D(bitmap, openfl_TextureCoordv);
 		float gray = dot(color.rgb, vec3(0.299, 0.587, 0.114));
 		gl_FragColor = vec4(vec3(gray), color.a);
 	}
@@ -407,7 +407,7 @@ class BrightShader extends FlxShader
 
 		void main()
 		{
-			vec4 col = texture2D(bitmap, openfl_TextureCoordv);
+			vec4 col = flixel_texture2D(bitmap, openfl_TextureCoordv);
 			col.rgb = col.rgb * contrast;
 			col.rgb = col.rgb + brightness;
 
@@ -549,7 +549,7 @@ class Grain extends FlxShader
 				noise.b = mix(noise.r,pnoise3D(vec3(rotCoordsB*vec2(openfl_TextureSize.x/grainsize,openfl_TextureSize.y/grainsize),2.0)),coloramount);
 			}
 
-			vec3 col = texture2D(bitmap, openfl_TextureCoordv).rgb;
+			vec3 col = flixel_texture2D(bitmap, openfl_TextureCoordv).rgb;
 
 			//noisiness response curve based on scene luminance
 			vec3 lumcoeff = vec3(0.299,0.587,0.114);
@@ -562,7 +562,7 @@ class Grain extends FlxShader
 			col = col+noise*grainamount;
 
 				float bitch = 1.0;
-			vec4 texColor = texture2D(bitmap, openfl_TextureCoordv);
+			vec4 texColor = flixel_texture2D(bitmap, openfl_TextureCoordv);
 				if (lockAlpha) bitch = texColor.a;
 			gl_FragColor =  vec4(col,bitch);
 		}')
@@ -804,7 +804,7 @@ vec2 raytraceTexturedQuad(in vec3 rayOrigin, in vec3 rayDirection, in vec3 quadC
 }
 
 void main() {
-	vec4 texColor = texture2D(bitmap, openfl_TextureCoordv);
+	vec4 texColor = flixel_texture2D(bitmap, openfl_TextureCoordv);
     //Screen UV goes from 0 - 1 along each axis
     vec2 screenUV = openfl_TextureCoordv;
     vec2 p = (2.0 * screenUV) - 1.0;
@@ -1245,7 +1245,7 @@ class GlitchShader extends FlxShader
     void main()
     {
         vec2 uv = sineWave(openfl_TextureCoordv);
-        gl_FragColor = texture2D(bitmap, uv);
+        gl_FragColor = flixel_texture2D(bitmap, uv);
     }')
 	public function new()
 	{
@@ -1256,19 +1256,16 @@ class GlitchShader extends FlxShader
 class InvertShader extends FlxShader
 {
 	@:glFragmentSource('
+	// Author: Lily (mcagabe19)
     #pragma header
-    
-    vec4 sineWave(vec4 pt)
-    {
-	
-	return vec4(1.0 - pt.x, 1.0 - pt.y, 1.0 - pt.z, pt.w);
-    }
 
     void main()
     {
-        vec2 uv = openfl_TextureCoordv;
-        gl_FragColor = sineWave(texture2D(bitmap, uv));
-		gl_FragColor.a = 1.0 - gl_FragColor.a;
+		vec2 fragCoord = openfl_TextureCoordv*openfl_TextureSize;
+		vec2 iResolution = openfl_TextureSize;
+		vec2 uv = fragCoord/iResolution.xy;
+		vec3 color = flixel_texture2D(bitmap,uv).xyz;
+		gl_FragColor = vec4(1.0 - color,1.0);
     }')
 	public function new()
 	{
@@ -1320,7 +1317,7 @@ class DistortBGShader extends FlxShader
     void main()
     {
         vec2 uv = sineWave(openfl_TextureCoordv);
-        gl_FragColor = makeBlack(texture2D(bitmap, uv)) + texture2D(bitmap,openfl_TextureCoordv);
+        gl_FragColor = makeBlack(flixel_texture2D(bitmap, uv)) + flixel_texture2D(bitmap,openfl_TextureCoordv);
     }')
 	public function new()
 	{
@@ -1372,7 +1369,7 @@ class PulseShader extends FlxShader
     void main()
     {
         vec2 uv = openfl_TextureCoordv;
-        gl_FragColor = sineWave(texture2D(bitmap, uv),uv);
+        gl_FragColor = sineWave(flixel_texture2D(bitmap, uv),uv);
     }')
 	public function new()
 	{
