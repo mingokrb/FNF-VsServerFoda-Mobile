@@ -568,7 +568,7 @@ class TitleState extends MusicBeatState
 					FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
 					FlxG.sound.music.fadeIn(4, 0, 0.7);
 				case 2:
-					createCoolText(['Vs Server Foda'], 40);
+					createCoolText(['Vs Server Foda'], -40);
 				case 3:
 					addMoreText('por', -40);
 				case 4:
