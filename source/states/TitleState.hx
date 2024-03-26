@@ -317,10 +317,10 @@ class TitleState extends MusicBeatState
 		ngSpr.screenCenter(X);
 		ngSpr.antialiasing = ClientPrefs.data.antialiasing;
 
-		sfSpr = new FlxSprite(0, FlxG.height * 0.5).loadGraphic(Paths.image('serverfoda_logo'));
+		sfSpr = new FlxSprite(0, FlxG.height * 0.52).loadGraphic(Paths.image('serverfoda_logo'));
 		add(sfSpr);
 		sfSpr.visible = false;
-		//sfSpr.setGraphicSize(Std.int(sfSpr.width * 0.8));
+		sfSpr.setGraphicSize(Std.int(sfSpr.width * 10.8));
 		sfSpr.updateHitbox();
 		sfSpr.screenCenter(X);
 		sfSpr.antialiasing = false;
@@ -328,6 +328,7 @@ class TitleState extends MusicBeatState
 		wegaSpr = new FlxSprite(0, 0).loadGraphic(Paths.image('wega'));
 		add(wegaSpr);
 		wegaSpr.visible = false;
+		wegaSpr.setGraphicSize(Std.int(wegaSpr.width));
 		wegaSpr.updateHitbox();
 		wegaSpr.screenCenter();
 		wegaSpr.antialiasing = true;
