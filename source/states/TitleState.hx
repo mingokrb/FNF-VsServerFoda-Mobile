@@ -49,6 +49,8 @@ class TitleState extends MusicBeatState
 	var credTextShit:Alphabet;
 	var textGroup:FlxGroup;
 	var ngSpr:FlxSprite;
+	var sfSpr:FlxSprite;
+	var wegaSpr:FlxSprite;
 	
 	var titleTextColors:Array<FlxColor> = [0xFF33FFFF, 0xFF3333CC];
 	var titleTextAlphas:Array<Float> = [1, .64];
@@ -205,7 +207,7 @@ class TitleState extends MusicBeatState
 
 		// bg.setGraphicSize(Std.int(bg.width * 0.6));
 		// bg.updateHitbox();
-		add(bg);
+		//add(bg);
 
 		logoBl = new FlxSprite(titleJSON.titlex, titleJSON.titley);
 		logoBl.frames = Paths.getSparrowAtlas('logoBumpin');
@@ -251,8 +253,8 @@ class TitleState extends MusicBeatState
 				gfDance.animation.addByIndices('danceRight', 'gfDance', [15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29], "", 24, false);
 		}
 
-		add(gfDance);
-		add(logoBl);
+		//add(gfDance);
+		//add(logoBl);
 		if(swagShader != null)
 		{
 			gfDance.shader = swagShader.shader;
@@ -283,7 +285,7 @@ class TitleState extends MusicBeatState
 		titleText.animation.play('idle');
 		titleText.updateHitbox();
 		// titleText.screenCenter(X);
-		add(titleText);
+		//add(titleText);
 
 		var logo:FlxSprite = new FlxSprite().loadGraphic(Paths.image('logo'));
 		logo.antialiasing = ClientPrefs.data.antialiasing;
@@ -315,6 +317,21 @@ class TitleState extends MusicBeatState
 		ngSpr.screenCenter(X);
 		ngSpr.antialiasing = ClientPrefs.data.antialiasing;
 
+		sfSpr = new FlxSprite(0, FlxG.height * 0.5).loadGraphic(Paths.image('serverfoda_logo'));
+		add(sfSpr);
+		sfSpr.visible = false;
+		//sfSpr.setGraphicSize(Std.int(sfSpr.width * 0.8));
+		sfSpr.updateHitbox();
+		sfSpr.screenCenter(X);
+		sfSpr.antialiasing = false;
+
+		wegaSpr = new FlxSprite(0, 0).loadGraphic(Paths.image('wega'));
+		add(wegaSpr);
+		wegaSpr.visible = false;
+		wegaSpr.updateHitbox();
+		wegaSpr.screenCenter();
+		wegaSpr.antialiasing = true;
+
 		if (initialized)
 			skipIntro();
 		else
@@ -327,9 +344,9 @@ class TitleState extends MusicBeatState
 	function getIntroTextShit():Array<Array<String>>
 	{
 		#if MODS_ALLOWED
-		var firstArray:Array<String> = Mods.mergeAllTextsNamed('data/introText.txt');
+		var firstArray:Array<String> = Mods.mergeAllTextsNamed('introText.txt');
 		#else
-		var fullText:String = Assets.getText(Paths.txt('introText'));
+		var fullText:String = Assets.getText('introText.txt');
 		var firstArray:Array<String> = fullText.split('\n');
 		#end
 		var swagGoodArray:Array<Array<String>> = [];
@@ -354,14 +371,14 @@ class TitleState extends MusicBeatState
 			Conductor.songPosition = FlxG.sound.music.time;
 		// FlxG.watch.addQuick('amp', FlxG.sound.music.amplitude);
 
-		var pressedEnter:Bool = FlxG.keys.justPressed.ENTER || controls.ACCEPT;
+		//var pressedEnter:Bool = FlxG.keys.justPressed.ENTER || controls.ACCEPT;
 
 		#if FLX_TOUCH
 		for (touch in FlxG.touches.list)
 		{
 			if (touch.justPressed)
 			{
-				pressedEnter = true;
+				//pressedEnter = true;
 			}
 		}
 		#end
@@ -371,11 +388,11 @@ class TitleState extends MusicBeatState
 		if (gamepad != null)
 		{
 			if (gamepad.justPressed.START)
-				pressedEnter = true;
+				//pressedEnter = true;
 
 			#if switch
 			if (gamepad.justPressed.B)
-				pressedEnter = true;
+				//pressedEnter = true;
 			#end
 		}
 		
@@ -400,7 +417,7 @@ class TitleState extends MusicBeatState
 				titleText.alpha = FlxMath.lerp(titleTextAlphas[0], titleTextAlphas[1], timer);
 			}
 			
-			if(pressedEnter)
+			/*if(pressedEnter)
 			{
 				titleText.color = FlxColor.WHITE;
 				titleText.alpha = 1;
@@ -423,7 +440,7 @@ class TitleState extends MusicBeatState
 					closedState = true;
 				});
 				// FlxG.sound.play(Paths.music('titleShoot'), 0.7);
-			}
+			}*/
 			#if TITLE_SCREEN_EASTER_EGG
 			else if (FlxG.keys.firstJustPressed() != FlxKey.NONE)
 			{
@@ -476,10 +493,10 @@ class TitleState extends MusicBeatState
 			#end
 		}
 
-		if (initialized && pressedEnter && !skippedIntro)
+		/*if (initialized && pressedEnter && !skippedIntro)
 		{
 			skipIntro();
-		}
+		}*/
 
 		if(swagShader != null)
 		{
@@ -550,32 +567,39 @@ class TitleState extends MusicBeatState
 					FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
 					FlxG.sound.music.fadeIn(4, 0, 0.7);
 				case 2:
-					createCoolText(['Psych Engine by'], 40);
+					createCoolText(['Vs Server Foda'], 40);
+				case 3:
+					addMoreText('por', -40);
 				case 4:
-					addMoreText('Shadow Mario', 40);
-					addMoreText('Riveren', 40);
+					addMoreText('Equipe Server Foda', -40);
+					sfSpr.visible = true;
 				case 5:
 					deleteCoolText();
+					sfSpr.visible = false;
 				case 6:
-					createCoolText(['Not associated', 'with'], -40);
+					createCoolText(['Não associado'], -40);
+				case 7:
+					addMoreText('com', -40);
 				case 8:
-					addMoreText('newgrounds', -40);
+					addMoreText('Newgrounds', -40);
 					ngSpr.visible = true;
 				case 9:
 					deleteCoolText();
 					ngSpr.visible = false;
 				case 10:
 					createCoolText([curWacky[0]]);
+				case 11:
+					addMoreText(curWacky[1], 15);
 				case 12:
-					addMoreText(curWacky[1]);
+					addMoreText(curWacky[2], 30);
 				case 13:
 					deleteCoolText();
 				case 14:
-					addMoreText('Friday');
+					addMoreText('GET');
 				case 15:
-					addMoreText('Night');
+					addMoreText('CAUE', 20);
 				case 16:
-					addMoreText('Funkin'); // credTextShit.text += '\nFunkin';
+					addMoreText('ROLLED', 42); // credTextShit.text += '\nFunkin';
 
 				case 17:
 					skipIntro();
@@ -608,6 +632,7 @@ class TitleState extends MusicBeatState
 
 					default: //Go back to normal ugly ass boring GF
 						remove(ngSpr);
+						remove(sfSpr);
 						remove(credGroup);
 						FlxG.camera.flash(FlxColor.WHITE, 2);
 						skippedIntro = true;
@@ -624,6 +649,7 @@ class TitleState extends MusicBeatState
 					new FlxTimer().start(3.2, function(tmr:FlxTimer)
 					{
 						remove(ngSpr);
+						remove(sfSpr);
 						remove(credGroup);
 						FlxG.camera.flash(FlxColor.WHITE, 0.6);
 						transitioning = false;
@@ -632,11 +658,13 @@ class TitleState extends MusicBeatState
 				else
 				{
 					remove(ngSpr);
+					remove(sfSpr);
 					remove(credGroup);
 					FlxG.camera.flash(FlxColor.WHITE, 3);
 					sound.onComplete = function() {
-						FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
-						FlxG.sound.music.fadeIn(4, 0, 0.7);
+						FlxG.sound.playMusic(Paths.sound('wega'), 1);
+						wegaSpr.visible = true;
+						//FlxG.sound.music.fadeIn(4, 0, 0.7);
 						transitioning = false;
 					};
 				}
@@ -645,6 +673,7 @@ class TitleState extends MusicBeatState
 			else #end //Default! Edit this one!!
 			{
 				remove(ngSpr);
+				remove(sfSpr);
 				remove(credGroup);
 				FlxG.camera.flash(FlxColor.WHITE, 4);
 
