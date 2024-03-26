@@ -318,7 +318,7 @@ class TitleState extends MusicBeatState
 		ngSpr.screenCenter(X);
 		ngSpr.antialiasing = ClientPrefs.data.antialiasing;
 
-		sfSpr = new FlxSprite(0, FlxG.height * 0.52).loadGraphic(Paths.image('serverfoda_logo'));
+		sfSpr = new FlxSprite(0, FlxG.height * 0.32).loadGraphic(Paths.image('serverfoda_logo'));
 		add(sfSpr);
 		sfSpr.visible = false;
 		sfSpr.setGraphicSize(Std.int(sfSpr.width * 5.8));
