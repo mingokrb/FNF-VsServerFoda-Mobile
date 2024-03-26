@@ -26,16 +26,16 @@
 	<define name="ACHIEVEMENTS_ALLOWED" />
 	<define name="DISCORD_ALLOWED" if="desktop" unless="hl"/>
 	<define name="TRANSLATIONS_ALLOWED" />	
-	<define name="SHOW_LOADING_SCREEN" />
+	<!-- define name="SHOW_LOADING_SCREEN" / -->
 	<!-- define name="PSYCH_WATERMARKS"/> !-- DELETE THIS TO REMOVE THE PSYCH LOGO FROM LOADING SCREEN -->
 	<define name="VIDEOS_ALLOWED" if="desktop || mobile" unless="32bits || hl || NOVIDEO || rpi"/> <!-- i'll keep this cuz it makes vscode think i don't use videos -->
 	<define name="ADVANCED_VIDEO_FUNCTIONS" if="VIDEOS_ALLOWED"/>
         <define name="CUSTOM_SHADERS_ALLOWED" if="LUA_ALLOWED"/>
 
-	<section if="officialBuild">
+	<!-- section if="officialBuild">
 		<define name="TITLE_SCREEN_EASTER_EGG"/>
 		<define name="BASE_GAME_FILES" />
-	</section>
+	</section -->
 
 	<!-- ____________________________ Window Settings ___________________________ -->
 
