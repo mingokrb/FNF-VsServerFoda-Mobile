@@ -565,7 +565,7 @@ class TitleState extends MusicBeatState
 			{
 				case 1:
 					//FlxG.sound.music.stop();
-					FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
+					FlxG.sound.playMusic(Paths.music('freakyMenu'), 0, false);
 					FlxG.sound.music.fadeIn(4, 0, 0.7);
 				case 2:
 					createCoolText(['Vs Server Foda'], -40);
@@ -606,6 +606,10 @@ class TitleState extends MusicBeatState
 					skipIntro();
 			}
 		}
+		sound.onComplete = function() {
+			FlxG.sound.playMusic(Paths.sound('wega'), 1, false);
+			wegaSpr.visible = true;
+		}		
 	}
 
 	var skippedIntro:Bool = false;
@@ -639,7 +643,7 @@ class TitleState extends MusicBeatState
 						skippedIntro = true;
 						playJingle = false;
 
-						FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
+						FlxG.sound.playMusic(Paths.music('freakyMenu'), 0, false);
 						FlxG.sound.music.fadeIn(4, 0, 0.7);
 						return;
 				}
@@ -663,7 +667,7 @@ class TitleState extends MusicBeatState
 					remove(credGroup);
 					FlxG.camera.flash(FlxColor.WHITE, 3);
 					sound.onComplete = function() {
-						FlxG.sound.playMusic(Paths.sound('wega'), 1);
+						FlxG.sound.playMusic(Paths.sound('wega'), 1, false);
 						wegaSpr.visible = true;
 						//FlxG.sound.music.fadeIn(4, 0, 0.7);
 						transitioning = false;
