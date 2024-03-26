@@ -5,7 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        storage-type: [EXTERNAL, OBB, DATA, MEDIA]
+        storage-type: [DATA]
     steps:
       - name: Checkout
         uses: actions/checkout@main
@@ -52,102 +52,29 @@ jobs:
         if: ${{ success() }}
         uses: actions/upload-artifact@main
         with:
-          name: androidBuild-${{ matrix.storage-type }}
+          name: vsServerFoda-androidBuild
           path: export/release/android/bin/app/build/outputs/apk/release/*.apk
           if-no-files-found: error
-  iOS:
-    runs-on: macos-13
-    steps:
-      - name: Checkout
-        uses: actions/checkout@main
-
-      - name: Setup Haxe
-        uses: krdlab/setup-haxe@master
-        with:
-          haxe-version: 4.3.4
-
-      - name: Install Libraries
-        run: |
-          haxelib setup ~/haxelib
-          haxelib install hmm --quiet
-          haxelib run hmm install --quiet
-
-      - name: Compile
-        run: haxelib run lime build ios -D NOVIDEO -D officialBuild -final
-
-      - name: Make Ipa
-        run: |
-          cd export/release/ios/build/Release-iphoneos
-          mkdir Payload
-          mv *.app Payload
-          zip -r PsychEngine.ipa Payload
-
-      - name: Make Zip For Release
-        run: |
-           cd export/release/ios/build/Release-iphoneos
-           zip PsychEngine-iOS.zip PsychEngine.ipa
-
-      - name: Upload Artifact
-        if: ${{ success() }}
-        uses: actions/upload-artifact@main
-        with:
-          name: iOSBuild
-          path: export/release/ios/build/Release-iphoneos/*.zip
-          if-no-files-found: error
   Releaser:
-    needs: [Android, iOS]
+    needs: [Android]
     runs-on: ubuntu-latest
     permissions: write-all
     steps:
-      - name: Download EXTERNAL Build
-        uses: actions/download-artifact@main
-        with:
-           name: androidBuild-EXTERNAL
-           path: /home/runner
-
-      - name: Move EXTERNAL File
-        run: mv /home/runner/PsychEngine-release.apk /home/runner/PsychEngine-EXTERNAL.apk
-
-      - name: Download OBB Build
-        uses: actions/download-artifact@main
-        with:
-           name: androidBuild-OBB
-           path: /home/runner
-
-      - name: Move OBB File
-        run: mv /home/runner/PsychEngine-release.apk /home/runner/PsychEngine-OBB.apk
-
       - name: Download DATA Build
         uses: actions/download-artifact@main
         with:
-           name: androidBuild-DATA
+           name: vsServerFoda-androidBuild
            path: /home/runner
 
       - name: Move DATA File
-        run: mv /home/runner/PsychEngine-release.apk /home/runner/PsychEngine-DATA.apk
-
-      - name: Download MEDIA Build
-        uses: actions/download-artifact@main
-        with:
-           name: androidBuild-MEDIA
-           path: /home/runner
-
-      - name: Move MEDIA File
-        run: mv /home/runner/PsychEngine-release.apk /home/runner/PsychEngine-MEDIA.apk
-
-      - name: Download iOS Build
-        uses: actions/download-artifact@main
-        with:
-           name: iOSBuild
-           path: /home/runner
+        run: mv /home/runner/PsychEngine-release.apk /home/runner/vsServerFoda-androidBuild.apk
 
       - name: Publish The Release
         uses: marvinpinto/action-automatic-releases@latest
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: true
-          automatic_release_tag: "dev-f137ec6"
-          title: "DevBuild f137ec6"
+          automatic_release_tag: "1.0"
+          title: "Release 1.0"
           files: |
             /home/runner/*.apk
-            /home/runner/*.zip
