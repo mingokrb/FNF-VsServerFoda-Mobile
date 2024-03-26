@@ -328,7 +328,7 @@ class TitleState extends MusicBeatState
 		wegaSpr = new FlxSprite(0, 0).loadGraphic(Paths.image('wega'));
 		add(wegaSpr);
 		wegaSpr.visible = false;
-		wegaSpr.setGraphicSize(Std.int(wegaSpr.width));
+		wegaSpr.setGraphicSize(Std.int(wegaSpr.width * 0.5));
 		wegaSpr.updateHitbox();
 		wegaSpr.screenCenter();
 		wegaSpr.antialiasing = true;
