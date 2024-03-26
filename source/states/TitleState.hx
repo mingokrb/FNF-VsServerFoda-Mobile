@@ -201,6 +201,7 @@ class TitleState extends MusicBeatState
 
 		if (titleJSON.backgroundSprite != null && titleJSON.backgroundSprite.length > 0 && titleJSON.backgroundSprite != "none"){
 			bg.loadGraphic(Paths.image(titleJSON.backgroundSprite));
+			bg.setGraphicSize(Std.int(bg.width * 0.5));
 		}else{
 			bg.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		}
@@ -568,9 +569,9 @@ class TitleState extends MusicBeatState
 					FlxG.sound.playMusic(Paths.music('freakyMenu'), 0, false);
 					FlxG.sound.music.fadeIn(4, 0, 0.7);
 				case 2:
-					createCoolText(['Vs Server Foda'], -40);
+					createCoolText(['Vs Server Foda'], -50);
 				case 3:
-					addMoreText('por', -40);
+					addMoreText('por', -45);
 				case 4:
 					addMoreText('Equipe Server Foda', -40);
 					sfSpr.visible = true;
@@ -578,9 +579,9 @@ class TitleState extends MusicBeatState
 					deleteCoolText();
 					sfSpr.visible = false;
 				case 6:
-					createCoolText(['Não associado'], -40);
+					createCoolText(['Não associado'], -50);
 				case 7:
-					addMoreText('com', -40);
+					addMoreText('com', -45);
 				case 8:
 					addMoreText('Newgrounds', -40);
 					ngSpr.visible = true;
