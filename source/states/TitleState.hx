@@ -406,7 +406,7 @@ class TitleState extends MusicBeatState
 
 		if (initialized && !transitioning && skippedIntro)
 		{
-			if (newTitle && !pressedEnter)
+			if (newTitle/* && !pressedEnter*/)
 			{
 				var timer:Float = titleTimer;
 				if (timer >= 1)
