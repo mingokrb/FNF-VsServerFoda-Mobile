@@ -18,15 +18,15 @@ class FlashingState extends MusicBeatState
 		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		add(bg);
 
-		var guh:String = "Hey, watch out!\n
-		This Mod contains some flashing lights!\n
-		Press A/ENTER to disable them now or go to Options Menu.\n
-		Press B/ESCAPE to ignore this message.\n
-		You've been warned!";
+		var guh:String = "Cuidado!\n
+		Este mod contém algumas luzes piscantes!\n
+		Aperte A/ENTER para desativá-las ou ir para o Menu de Opções.\n
+		Aperte B/ESC para ignorar essa mensagem.\n
+		Você foi avisado(a)!";
 
 		controls.isInSubstate = false; // qhar I hate it
 		warnText = new FlxText(0, 0, FlxG.width, guh, 32);
-		warnText.setFormat("VCR OSD Mono", 32, FlxColor.WHITE, CENTER);
+		warnText.setFormat(Paths.font('comicsans.ttf'), 32, FlxColor.WHITE, CENTER);
 		warnText.screenCenter(Y);
 		add(warnText);
 
