@@ -38,7 +38,7 @@ class FlashingState extends MusicBeatState
 		warnText.screenCenter();
 		add(warnText);
 
-		FlxG.sound.playMusic(Paths.music('offset'), 0.7);
+		FlxG.sound.playMusic(Paths.music('offsetSong'), 0.7);
 		addVirtualPad('NONE', 'A_B');
 	}
 
@@ -51,8 +51,8 @@ class FlashingState extends MusicBeatState
 
 			var back:Bool = controls.BACK;
 			if (controls.ACCEPT || back) {
-				FlxG.sound.music.fadeOut();
 				leftState = true;
+				FlxG.sound.music.fadeOut();
 				FlxTransitionableState.skipNextTransIn = true;
 				FlxTransitionableState.skipNextTransOut = true;
 				if(!back) {
