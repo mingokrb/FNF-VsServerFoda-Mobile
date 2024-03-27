@@ -18,7 +18,7 @@ class FlashingState extends MusicBeatState
 		super.create();
 
 		bg = new FlxBackdrop(Paths.getSharedPath('backdrop.png')); //new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
-		bg.alpha = 0.5;
+		bg.alpha = 0.3;
 		bg.updateHitbox();
 		bg.screenCenter(X);
 		add(bg);
@@ -44,8 +44,6 @@ class FlashingState extends MusicBeatState
 	{
 		if(!leftState) {
 			// https://gamebanana.com/tuts/15426
-			bg.x = 0;
-			bg.y -= 0.16 / (ClientPrefs.framerate / 60);
 			bg.x += .5*(elapsed/(1/120));
 			bg.y -= 0.16 / (ClientPrefs.framerate / 60); 
 
