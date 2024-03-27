@@ -24,7 +24,7 @@ class FlashingState extends MusicBeatState
 		bg.screenCenter(X);
 		add(bg);
 
-		ni = new Alphabet(0, 100, 'Cuidado!', true);
+		ni = new Alphabet(0, 85, 'Cuidado!', true);
 		ni.screenCenter(X);
 		add(ni);
 		var guh:String = 'Este mod contém algumas luzes piscantes!\n
@@ -33,7 +33,7 @@ class FlashingState extends MusicBeatState
 		Você foi avisado(a)!';
 
 		controls.isInSubstate = false; // qhar I hate it
-		warnText = new FlxText(0, 40, FlxG.width, guh, 16);
+		warnText = new FlxText(0, 25, FlxG.width, guh, 16);
 		warnText.setFormat(Paths.font('comicsans.ttf'), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		warnText.updateHitbox();
 		warnText.screenCenter(X);
