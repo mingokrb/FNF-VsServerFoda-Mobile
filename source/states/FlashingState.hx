@@ -33,7 +33,7 @@ class FlashingState extends MusicBeatState
 		Você foi avisado(a)!';
 
 		controls.isInSubstate = false; // qhar I hate it
-		warnText = new FlxText(0, 25, FlxG.width, guh, 16);
+		warnText = new FlxText(0, FlxG.width * 0.5, FlxG.width, guh, 16);
 		warnText.setFormat(Paths.font('comicsans.ttf'), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		warnText.updateHitbox();
 		warnText.screenCenter(X);
@@ -55,26 +55,25 @@ class FlashingState extends MusicBeatState
 				leftState = true;
 				FlxTransitionableState.skipNextTransIn = true;
 				FlxTransitionableState.skipNextTransOut = true;
-				FlxG.sound.music.fadeOut(0.5, 0);
+				FlxTween.tween(bg, {alpha: 0}, 0.7);
+				FlxTween.tween(ni, {alpha: 0}, 0.8);
+				FlxG.sound.music.fadeOut(0.4, 0, function(twn:FlxTween) {
+					FlxG.sound.music.stop();
+				});
 				if(!back) {
 					ClientPrefs.data.flashing = false;
 					ClientPrefs.saveSettings();
 					FlxG.sound.play(Paths.sound('confirmMenu'));
-					//FlxFlicker.flicker(ni, 1, 0.1, false, true);
 					FlxFlicker.flicker(warnText, 1, 0.1, false, true, function(flk:FlxFlicker) {
 						new FlxTimer().start(0.5, function (tmr:FlxTimer) {
-							FlxG.sound.music.stop();
 							MusicBeatState.switchState(new TitleState());
 						});
 					});
 				} else {
 					FlxG.sound.play(Paths.sound('cancelMenu'));
-					FlxTween.tween(bg, {alpha: 0}, 0.7);
-					FlxTween.tween(ni, {alpha: 0}, 0.8);
 					FlxTween.tween(warnText, {alpha: 0}, 0.6, {
 						ease: FlxEase.quadOut,
 						onComplete: function (twn:FlxTween) {
-							FlxG.sound.music.stop();
 							MusicBeatState.switchState(new TitleState());
 						}
 					});
