@@ -55,7 +55,7 @@ class FlashingState extends MusicBeatState
 				leftState = true;
 				FlxTransitionableState.skipNextTransIn = true;
 				FlxTransitionableState.skipNextTransOut = true;
-				FlxG.sound.music.fadeOut(0)
+				FlxG.sound.music.fadeOut(0.5, 0)
 				if(!back) {
 					ClientPrefs.data.flashing = false;
 					ClientPrefs.saveSettings();
