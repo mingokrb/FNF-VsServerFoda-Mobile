@@ -12,6 +12,7 @@ class FlashingState extends MusicBeatState
 	public static var leftState:Bool = false;
 
 	var bg:FlxBackdrop;
+	var ni:Alphabet;
 	var warnText:FlxText;
 	override function create()
 	{
@@ -23,7 +24,7 @@ class FlashingState extends MusicBeatState
 		bg.screenCenter(X);
 		add(bg);
 
-		var ni:Alphabet = new Alphabet(0, 60, 'Cuidado!', true);
+		ni = new Alphabet(0, 60, 'Cuidado!', true);
 		ni.screenCenter(X);
 		add(ni);
 		var guh:String = 'Este mod contém algumas luzes piscantes!\n
@@ -44,8 +45,8 @@ class FlashingState extends MusicBeatState
 	{
 		if(!leftState) {
 			// https://gamebanana.com/tuts/15426
-			bg.x += .5*(elapsed/(1/120));
-			bg.y -= 0.16 / (ClientPrefs.framerate / 60); 
+			bg.x += .2*(elapsed/(1/120));
+			bg.y -= 0.1 / (ClientPrefs.framerate / 60); 
 
 			var back:Bool = controls.BACK;
 			if (controls.ACCEPT || back) {
@@ -64,7 +65,10 @@ class FlashingState extends MusicBeatState
 					});
 				} else {
 					FlxG.sound.play(Paths.sound('cancelMenu'));
-					FlxTweem.tween(ni, {alpha: 0}, 0.8);
+					FlxTween.tween(bg, {alpha: 0}, 0.7, {
+						ease: FlxEase.quadInOut
+					}
+					FlxTween.tween(ni, {alpha: 0}, 0.8);
 					FlxTween.tween(warnText, {alpha: 0}, 0.6, {
 						ease: FlxEase.quadOut,
 						onComplete: function (twn:FlxTween) {
