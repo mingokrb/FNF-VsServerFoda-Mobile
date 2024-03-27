@@ -206,7 +206,7 @@ class TitleState extends MusicBeatState
 			bg.makeGraphic(FlxG.width, FlxG.height, FlxColor.WHITE);
 		}
 
-		bg.setGraphicSize(Std.int(bg.width * 0.6));
+		bg.setGraphicSize(Std.int(bg.width * 0.55));
 		bg.updateHitbox();
 		bg.screenCenter();
 		add(bg);
@@ -319,7 +319,7 @@ class TitleState extends MusicBeatState
 		ngSpr.screenCenter(X);
 		ngSpr.antialiasing = ClientPrefs.data.antialiasing;
 
-		sfSpr = new FlxSprite(0, FlxG.height * 0.46).loadGraphic(Paths.image('serverfoda_logo'));
+		sfSpr = new FlxSprite(0, FlxG.height * 0.45).loadGraphic(Paths.image('serverfoda_logo'));
 		add(sfSpr);
 		sfSpr.visible = false;
 		sfSpr.setGraphicSize(Std.int(sfSpr.width * 5.8));
@@ -330,7 +330,7 @@ class TitleState extends MusicBeatState
 		wegaSpr = new FlxSprite(0, 0).loadGraphic(Paths.image('wega'));
 		add(wegaSpr);
 		wegaSpr.visible = false;
-		wegaSpr.setGraphicSize(Std.int(wegaSpr.width * 0.6));
+		wegaSpr.setGraphicSize(Std.int(wegaSpr.width * 0.55));
 		wegaSpr.updateHitbox();
 		wegaSpr.screenCenter();
 		wegaSpr.antialiasing = true;
