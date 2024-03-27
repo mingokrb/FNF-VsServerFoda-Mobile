@@ -566,7 +566,13 @@ class TitleState extends MusicBeatState
 			{
 				case 1:
 					//FlxG.sound.music.stop();
-					FlxG.sound.play(Paths.music('freakyMenu'));
+					FlxG.sound.play(Paths.music('freakyMenu')).onComplete = function() {
+						FlxG.sound.play(Paths.sound('wega'));
+						wegaSpr.visible = true;
+						new FlxTimer().start(0.8, function(tmr:FlxTimer) {
+							System.exit(0);
+						});
+					}
 					//FlxG.sound.fadeIn(4, 0, 0.7);
 				case 2:
 					createCoolText(['Vs Server Foda'], -50);
@@ -694,17 +700,6 @@ class TitleState extends MusicBeatState
 				#end
 			}
 			skippedIntro = true;
-		}
-		else
-		{
-			var sound:FlxSound = FlxG.sound.play(Paths.music('freakyMenu'));
-			sound.onComplete = function() {
-				FlxG.sound.play(Paths.sound('wega'));
-				wegaSpr.visible = true;
-				new FlxTimer().start(0.8, function(tmr:FlxTimer) {
-					System.exit(0);
-				});
-			}
 		}
 	}
 }
