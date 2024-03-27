@@ -507,7 +507,7 @@ class TitleState extends MusicBeatState
 			if(controls.UI_RIGHT) swagShader.hue += elapsed * 0.1;
 		}
 
-		super.update(elapsed);
+		super.update(/*elapsed*/);
 	}
 
 	function createCoolText(textArray:Array<String>, ?offset:Float = 0)
@@ -560,7 +560,6 @@ class TitleState extends MusicBeatState
 			else
 				gfDance.animation.play('danceLeft');
 		}
-		var sound:FlxSound = null;
 
 		if(!closedState) {
 			sickBeats++;
@@ -568,7 +567,7 @@ class TitleState extends MusicBeatState
 			{
 				case 1:
 					//FlxG.sound.music.stop();
-					sound = FlxG.sound.play(Paths.music('freakyMenu'));
+					FlxG.sound.play(Paths.music('freakyMenu'));
 					//FlxG.sound.fadeIn(4, 0, 0.7);
 				case 2:
 					createCoolText(['Vs Server Foda'], -50);
@@ -608,13 +607,6 @@ class TitleState extends MusicBeatState
 				case 17:
 					skipIntro();
 			}
-		}
-		sound.onComplete = function() {
-			FlxG.sound.play(Paths.sound('wega'));
-			wegaSpr.visible = true;
-			new FlxTimer().start(0.7, function(tmr:FlxTimer) {
-				System.exit(0);
-			});
 		}		
 	}
 
@@ -673,7 +665,7 @@ class TitleState extends MusicBeatState
 					remove(credGroup);
 					FlxG.camera.flash(FlxColor.WHITE, 3);
 					sound.onComplete = function() {
-						FlxG.sound.playMusic(Paths.sound('wega'), 1, false);
+						FlxG.sound.play(Paths.sound('wega'));
 						wegaSpr.visible = true;
 						//FlxG.sound.music.fadeIn(4, 0, 0.7);
 						transitioning = false;
@@ -703,6 +695,17 @@ class TitleState extends MusicBeatState
 				#end
 			}
 			skippedIntro = true;
+		}
+		else
+		{
+			var sound:FlxSound = FlxG.sound.play(Paths.music('freakyMenu'));
+			sound.onComplete = function() {
+				FlxG.sound.play(Paths.sound('wega'));
+				wegaSpr.visible = true
+				new FlxTimer().start(0.8, function(tmr:FlxTimer) {
+					System.exit(0);
+				});
+			}
 		}
 	}
 }
