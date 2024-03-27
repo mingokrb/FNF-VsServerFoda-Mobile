@@ -33,11 +33,12 @@ class FlashingState extends MusicBeatState
 		Você foi avisado(a)!';
 
 		controls.isInSubstate = false; // qhar I hate it
-		warnText = new FlxText(0, 0, FlxG.width, guh, 32);
-		warnText.setFormat(Paths.font('comicsans.ttf'), 48, FlxColor.WHITE, CENTER);
+		warnText = new FlxText(0, 0, FlxG.width, guh, 16);
+		warnText.setFormat(Paths.font('comicsans.ttf'), 32, FlxColor.WHITE, CENTER, FlxColor.OUTLINE, FlxColor.BLACK);
 		warnText.screenCenter(Y);
 		add(warnText);
 
+		FlxG.sound.playMusic(Paths.music('offset'), 0.7);
 		addVirtualPad('NONE', 'A_B');
 	}
 
@@ -50,6 +51,7 @@ class FlashingState extends MusicBeatState
 
 			var back:Bool = controls.BACK;
 			if (controls.ACCEPT || back) {
+				FlxG.sound.music.fadeOut();
 				leftState = true;
 				FlxTransitionableState.skipNextTransIn = true;
 				FlxTransitionableState.skipNextTransOut = true;
