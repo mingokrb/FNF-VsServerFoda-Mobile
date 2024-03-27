@@ -567,7 +567,7 @@ class TitleState extends MusicBeatState
 			{
 				case 1:
 					//FlxG.sound.music.stop();
-					FlxG.sound.playMusic(Paths.music('freakyMenu'), 0, false);
+					sound = FlxG.sound.playMusic(Paths.music('freakyMenu'), 0, false);
 					FlxG.sound.music.fadeIn(4, 0, 0.7);
 				case 2:
 					createCoolText(['Vs Server Foda'], -50);
@@ -609,7 +609,7 @@ class TitleState extends MusicBeatState
 			}
 		}
 		sound.onComplete = function() {
-			FlxG.sound.playMusic(Paths.sound('wega'), 1, false);
+			FlxG.sound.play(Paths.sound('wega'));
 			wegaSpr.visible = true;
 		}		
 	}
