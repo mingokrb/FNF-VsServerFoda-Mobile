@@ -11,12 +11,13 @@ class FlashingState extends MusicBeatState
 {
 	public static var leftState:Bool = false;
 
+	var bg:FlxBackdrop;
 	var warnText:FlxText;
 	override function create()
 	{
 		super.create();
 
-		var bg:FlxBackdrop = new FlxBackdrop(Paths.getSharedPath('backdrop.png')); //new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+		bg = new FlxBackdrop(Paths.getSharedPath('backdrop.png')); //new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		bg.alpha = 0.5;
 		bg.updateHitbox();
 		bg.screenCenter(X);
@@ -42,6 +43,12 @@ class FlashingState extends MusicBeatState
 	override function update(elapsed:Float)
 	{
 		if(!leftState) {
+			// https://gamebanana.com/tuts/15426
+			bg.x = 0;
+			bg.y -= 0.16 / (ClientPrefs.framerate / 60);
+			bg.x += .5*(elapsed/(1/120));
+			bg.y -= 0.16 / (ClientPrefs.framerate / 60); 
+
 			var back:Bool = controls.BACK;
 			if (controls.ACCEPT || back) {
 				leftState = true;
