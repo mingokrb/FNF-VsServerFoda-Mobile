@@ -46,7 +46,7 @@ class FlashingState extends MusicBeatState
 		if(!leftState) {
 			// https://gamebanana.com/tuts/15426
 			bg.x += .2*(elapsed/(1/120));
-			bg.y -= 0.1 / (ClientPrefs.framerate / 60); 
+			bg.y -= 0.1 / (ClientPrefs.data.framerate / 60); 
 
 			var back:Bool = controls.BACK;
 			if (controls.ACCEPT || back) {
