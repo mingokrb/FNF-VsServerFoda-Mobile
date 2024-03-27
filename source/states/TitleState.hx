@@ -206,7 +206,7 @@ class TitleState extends MusicBeatState
 			bg.makeGraphic(FlxG.width, FlxG.height, FlxColor.WHITE);
 		}
 
-		bg.setGraphicSize(Std.int(bg.width * 0.55));
+		bg.setGraphicSize(Std.int(bg.width * 0.54));
 		bg.updateHitbox();
 		bg.screenCenter();
 		add(bg);
