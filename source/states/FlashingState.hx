@@ -15,7 +15,7 @@ class FlashingState extends MusicBeatState
 	{
 		super.create();
 
-		var bg:FlxSprite = new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+		var bg:FlxBackdrop = new FlxBackdrop(Paths.image('backdrop')); //new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
 		add(bg);
 
 		var guh:String = "Cuidado!\n
@@ -25,8 +25,8 @@ class FlashingState extends MusicBeatState
 		Você foi avisado(a)!";
 
 		controls.isInSubstate = false; // qhar I hate it
-		warnText = new FlxText(0, 0, FlxG.width, guh, 32);
-		warnText.setFormat(Paths.font('comicsans.ttf'), 32, FlxColor.WHITE, CENTER);
+		warnText = new FlxText(0, 0, FlxG.width, guh, 48);
+		warnText.setFormat(Paths.font('comicsans.ttf'), 48, FlxColor.WHITE, CENTER);
 		warnText.screenCenter(Y);
 		add(warnText);
 
