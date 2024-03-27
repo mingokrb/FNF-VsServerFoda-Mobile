@@ -6,8 +6,6 @@ import flixel.effects.FlxFlicker;
 import lime.app.Application;
 import flixel.addons.transition.FlxTransitionableState;
 
-//import object.Alphabet;
-
 class FlashingState extends MusicBeatState
 {
 	public static var leftState:Bool = false;
