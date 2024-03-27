@@ -32,7 +32,7 @@ class FlashingState extends MusicBeatState
 		Você foi avisado(a)!';
 
 		controls.isInSubstate = false; // qhar I hate it
-		warnText = new FlxText(0, 0, FlxG.width, guh, 48);
+		warnText = new FlxText(0, 0, FlxG.width, guh, 32);
 		warnText.setFormat(Paths.font('comicsans.ttf'), 48, FlxColor.WHITE, CENTER);
 		warnText.screenCenter(Y);
 		add(warnText);
