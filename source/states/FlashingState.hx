@@ -52,7 +52,8 @@ class FlashingState extends MusicBeatState
 					});
 				} else {
 					FlxG.sound.play(Paths.sound('cancelMenu'));
-					FlxTween.tween(warnText, {alpha: 0}, 1, {
+					FlxTween.tween(warnText, {alpha: 0}, 0.6, {
+						ease: FlxEase.quadOut,
 						onComplete: function (twn:FlxTween) {
 							MusicBeatState.switchState(new TitleState());
 						}
