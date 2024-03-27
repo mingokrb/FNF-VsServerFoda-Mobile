@@ -34,8 +34,8 @@ class FlashingState extends MusicBeatState
 
 		controls.isInSubstate = false; // qhar I hate it
 		warnText = new FlxText(0, 0, FlxG.width, guh, 16);
-		warnText.setFormat(Paths.font('comicsans.ttf'), 32, FlxColor.WHITE, CENTER, FlxColor.OUTLINE, FlxColor.BLACK);
-		warnText.screenCenter(Y);
+		warnText.setFormat(Paths.font('comicsans.ttf'), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
+		warnText.screenCenter();
 		add(warnText);
 
 		FlxG.sound.playMusic(Paths.music('offset'), 0.7);
