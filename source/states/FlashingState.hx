@@ -52,10 +52,8 @@ class FlashingState extends MusicBeatState
 
 			var back:Bool = controls.BACK;
 			if (controls.ACCEPT || back) {
-				FlxTween.tween(bg, {alpha: 0}, 0.7);
-				FlxTween.tween(ni, {alpha: 0}, 0.8);
 				//FlxG.sound.music.fadeOut(0.4, 0, function(twn:FlxTween) {
-				FlxG.sound.music.stop();
+					//FlxG.sound.music.stop();
 				//});
 				leftState = true;
 				FlxTransitionableState.skipNextTransIn = true;
@@ -63,14 +61,20 @@ class FlashingState extends MusicBeatState
 				if(!back) {
 					ClientPrefs.data.flashing = false;
 					ClientPrefs.saveSettings();
+					FlxG.sound.music.stop();
 					FlxG.sound.play(Paths.sound('confirmMenu'));
+					FlxTween.tween(bg, {alpha: 0}, 0.7);
+					FlxTween.tween(ni, {alpha: 0}, 0.8);
 					FlxFlicker.flicker(warnText, 1, 0.1, false, true, function(flk:FlxFlicker) {
-						new FlxTimer().start(0.5, function (tmr:FlxTimer) {
+						new FlxTimer().start(0.2, function (tmr:FlxTimer) {
 							MusicBeatState.switchState(new TitleState());
 						});
 					});
 				} else {
+					FlxG.sound.music.stop();
 					FlxG.sound.play(Paths.sound('cancelMenu'));
+					FlxTween.tween(bg, {alpha: 0}, 0.7);
+					FlxTween.tween(ni, {alpha: 0}, 0.8);
 					FlxTween.tween(warnText, {alpha: 0}, 0.6, {
 						ease: FlxEase.quadOut,
 						onComplete: function (twn:FlxTween) {
