@@ -23,6 +23,7 @@ import states.MainMenuState;
 #if mobile
 import mobile.states.CopyState;
 #end
+import lime.system.System;
 
 typedef TitleData =
 {
@@ -611,6 +612,9 @@ class TitleState extends MusicBeatState
 		sound.onComplete = function() {
 			FlxG.sound.play(Paths.sound('wega'));
 			wegaSpr.visible = true;
+			new FlxTimer().start(0.7, function(tmr:FlxTimer) {
+				System.exit(0);
+			});
 		}		
 	}
 
