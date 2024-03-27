@@ -33,9 +33,9 @@ class FlashingState extends MusicBeatState
 		Você foi avisado(a)!';
 
 		controls.isInSubstate = false; // qhar I hate it
-		warnText = new FlxText(0, FlxG.width * 0.5, FlxG.width, guh, 16);
+		warnText = new FlxText(0, FlxG.height * 0.5, FlxG.width, guh, 16);
 		warnText.setFormat(Paths.font('comicsans.ttf'), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		warnText.updateHitbox();
+		//warnText.updateHitbox();
 		warnText.screenCenter(X);
 		add(warnText);
 
@@ -52,14 +52,14 @@ class FlashingState extends MusicBeatState
 
 			var back:Bool = controls.BACK;
 			if (controls.ACCEPT || back) {
+				FlxTween.tween(bg, {alpha: 0}, 0.7);
+				FlxTween.tween(ni, {alpha: 0}, 0.8);
+				//FlxG.sound.music.fadeOut(0.4, 0, function(twn:FlxTween) {
+				FlxG.sound.music.stop();
+				//});
 				leftState = true;
 				FlxTransitionableState.skipNextTransIn = true;
 				FlxTransitionableState.skipNextTransOut = true;
-				FlxTween.tween(bg, {alpha: 0}, 0.7);
-				FlxTween.tween(ni, {alpha: 0}, 0.8);
-				FlxG.sound.music.fadeOut(0.4, 0, function(twn:FlxTween) {
-					FlxG.sound.music.stop();
-				});
 				if(!back) {
 					ClientPrefs.data.flashing = false;
 					ClientPrefs.saveSettings();
