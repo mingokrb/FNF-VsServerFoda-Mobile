@@ -55,6 +55,7 @@ class FlashingState extends MusicBeatState
 				leftState = true;
 				FlxTransitionableState.skipNextTransIn = true;
 				FlxTransitionableState.skipNextTransOut = true;
+				FlxG.sound.music.fadeOut(0)
 				if(!back) {
 					ClientPrefs.data.flashing = false;
 					ClientPrefs.saveSettings();
@@ -68,9 +69,7 @@ class FlashingState extends MusicBeatState
 					});
 				} else {
 					FlxG.sound.play(Paths.sound('cancelMenu'));
-					FlxTween.tween(bg, {alpha: 0}, 0.7, {
-						ease: FlxEase.quadInOut
-					});
+					FlxTween.tween(bg, {alpha: 0}, 0.7);
 					FlxTween.tween(ni, {alpha: 0}, 0.8);
 					FlxTween.tween(warnText, {alpha: 0}, 0.6, {
 						ease: FlxEase.quadOut,
