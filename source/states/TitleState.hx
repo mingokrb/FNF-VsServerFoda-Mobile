@@ -203,11 +203,12 @@ class TitleState extends MusicBeatState
 		if (titleJSON.backgroundSprite != null && titleJSON.backgroundSprite.length > 0 && titleJSON.backgroundSprite != "none"){
 			bg.loadGraphic(Paths.image(titleJSON.backgroundSprite));
 		}else{
-			bg.makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+			bg.makeGraphic(FlxG.width, FlxG.height, FlxColor.WHITE);
 		}
 
-		bg.setGraphicSize(Std.int(bg.width * 0.5));
+		bg.setGraphicSize(Std.int(bg.width * 0.6));
 		bg.updateHitbox();
+		bg.screenCenter();
 		add(bg);
 
 		logoBl = new FlxSprite(titleJSON.titlex, titleJSON.titley);
@@ -318,7 +319,7 @@ class TitleState extends MusicBeatState
 		ngSpr.screenCenter(X);
 		ngSpr.antialiasing = ClientPrefs.data.antialiasing;
 
-		sfSpr = new FlxSprite(0, FlxG.height * 0.48).loadGraphic(Paths.image('serverfoda_logo'));
+		sfSpr = new FlxSprite(0, FlxG.height * 0.46).loadGraphic(Paths.image('serverfoda_logo'));
 		add(sfSpr);
 		sfSpr.visible = false;
 		sfSpr.setGraphicSize(Std.int(sfSpr.width * 5.8));
@@ -329,7 +330,7 @@ class TitleState extends MusicBeatState
 		wegaSpr = new FlxSprite(0, 0).loadGraphic(Paths.image('wega'));
 		add(wegaSpr);
 		wegaSpr.visible = false;
-		wegaSpr.setGraphicSize(Std.int(wegaSpr.width * 0.5));
+		wegaSpr.setGraphicSize(Std.int(wegaSpr.width * 0.6));
 		wegaSpr.updateHitbox();
 		wegaSpr.screenCenter();
 		wegaSpr.antialiasing = true;
