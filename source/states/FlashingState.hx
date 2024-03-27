@@ -22,12 +22,13 @@ class FlashingState extends MusicBeatState
 		bg.screenCenter(X);
 		add(bg);
 
-		var ni:Alphabet = new Alphabet(FlxG.width / 2, 60, 'Cuidado!', true);
+		var ni:Alphabet = new Alphabet(0, 60, 'Cuidado!', true);
+		ni.screenCenter(X);
 		add(ni);
-		var guh:String = "Este mod contém algumas luzes piscantes!\n
+		var guh:String = 'Este mod contém algumas luzes piscantes!\n
 		Aperte A/ENTER para desativá-las ou ir para o Menu de Opções.\n
 		Aperte B/ESC para ignorar essa mensagem.\n
-		Você foi avisado(a)!";
+		Você foi avisado(a)!';
 
 		controls.isInSubstate = false; // qhar I hate it
 		warnText = new FlxText(0, 0, FlxG.width, guh, 48);
