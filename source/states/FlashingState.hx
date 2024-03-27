@@ -24,7 +24,7 @@ class FlashingState extends MusicBeatState
 		bg.screenCenter(X);
 		add(bg);
 
-		ni = new Alphabet(0, 60, 'Cuidado!', true);
+		ni = new Alphabet(0, 100, 'Cuidado!', true);
 		ni.screenCenter(X);
 		add(ni);
 		var guh:String = 'Este mod contém algumas luzes piscantes!\n
@@ -33,12 +33,13 @@ class FlashingState extends MusicBeatState
 		Você foi avisado(a)!';
 
 		controls.isInSubstate = false; // qhar I hate it
-		warnText = new FlxText(0, 0, FlxG.width, guh, 16);
+		warnText = new FlxText(0, 40, FlxG.width, guh, 16);
 		warnText.setFormat(Paths.font('comicsans.ttf'), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
-		warnText.screenCenter();
+		warnText.updateHitbox();
+		warnText.screenCenter(X);
 		add(warnText);
 
-		FlxG.sound.playMusic(Paths.music('offsetSong'), 0.7);
+		FlxG.sound.playMusic(Paths.music('offsetSong'), 0.5);
 		addVirtualPad('NONE', 'A_B');
 	}
 
@@ -46,22 +47,22 @@ class FlashingState extends MusicBeatState
 	{
 		if(!leftState) {
 			// https://gamebanana.com/tuts/15426
-			bg.x += .2*(elapsed/(1/120));
-			bg.y -= 0.1 / (ClientPrefs.data.framerate / 60); 
+			bg.x += .3*(elapsed/(1/120));
+			bg.y -= 0.2 / (ClientPrefs.data.framerate / 60); 
 
 			var back:Bool = controls.BACK;
 			if (controls.ACCEPT || back) {
 				leftState = true;
-				FlxG.sound.music.fadeOut();
 				FlxTransitionableState.skipNextTransIn = true;
 				FlxTransitionableState.skipNextTransOut = true;
 				if(!back) {
 					ClientPrefs.data.flashing = false;
 					ClientPrefs.saveSettings();
 					FlxG.sound.play(Paths.sound('confirmMenu'));
-					FlxFlicker.flicker(ni, 1, 0.1, false, true);
+					//FlxFlicker.flicker(ni, 1, 0.1, false, true);
 					FlxFlicker.flicker(warnText, 1, 0.1, false, true, function(flk:FlxFlicker) {
 						new FlxTimer().start(0.5, function (tmr:FlxTimer) {
+							FlxG.sound.music.stop();
 							MusicBeatState.switchState(new TitleState());
 						});
 					});
@@ -74,6 +75,7 @@ class FlashingState extends MusicBeatState
 					FlxTween.tween(warnText, {alpha: 0}, 0.6, {
 						ease: FlxEase.quadOut,
 						onComplete: function (twn:FlxTween) {
+							FlxG.sound.music.stop();
 							MusicBeatState.switchState(new TitleState());
 						}
 					});
