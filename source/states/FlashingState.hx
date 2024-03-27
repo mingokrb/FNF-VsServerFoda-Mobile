@@ -6,6 +6,8 @@ import flixel.effects.FlxFlicker;
 import lime.app.Application;
 import flixel.addons.transition.FlxTransitionableState;
 
+//import object.Alphabet;
+
 class FlashingState extends MusicBeatState
 {
 	public static var leftState:Bool = false;
@@ -16,10 +18,13 @@ class FlashingState extends MusicBeatState
 		super.create();
 
 		var bg:FlxBackdrop = new FlxBackdrop(Paths.image('backdrop')); //new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+		bg.updateHitbox();
+		bg.screenCenter(X);
 		add(bg);
 
-		var guh:String = "Cuidado!\n
-		Este mod contém algumas luzes piscantes!\n
+		var ni:Alphabet = new Alphabet(FlxG.width / 2, 60, 'Cuidado!', true);
+		add(ni);
+		var guh:String = "Este mod contém algumas luzes piscantes!\n
 		Aperte A/ENTER para desativá-las ou ir para o Menu de Opções.\n
 		Aperte B/ESC para ignorar essa mensagem.\n
 		Você foi avisado(a)!";
