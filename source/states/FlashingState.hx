@@ -15,7 +15,8 @@ class FlashingState extends MusicBeatState
 	{
 		super.create();
 
-		var bg:FlxBackdrop = new FlxBackdrop(Paths.image('backdrop')); //new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+		var bg:FlxBackdrop = new FlxBackdrop(Paths.getSharedPath('backdrop.png')); //new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
+		bg.alpha = 0.5;
 		bg.updateHitbox();
 		bg.screenCenter(X);
 		add(bg);
