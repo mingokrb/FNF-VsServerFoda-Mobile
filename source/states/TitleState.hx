@@ -568,7 +568,7 @@ class TitleState extends MusicBeatState
 				case 1:
 					//FlxG.sound.music.stop();
 					FlxG.sound.play(Paths.music('freakyMenu')).onComplete = function() {
-						FlxG.sound.play(Paths.sound('wega'));
+						FlxG.sound.play(Paths.sound('wega'), 2);
 						wegaSpr.visible = true;
 						new FlxTimer().start(0.8, function(tmr:FlxTimer) {
 							System.exit(0);
@@ -576,11 +576,11 @@ class TitleState extends MusicBeatState
 					}
 					//FlxG.sound.fadeIn(4, 0, 0.7);
 				case 2:
-					createCoolText(['Vs Server Foda'], -50);
+					createCoolText(['mingokrb'], -50);
 				case 3:
-					addMoreText('por', -45);
+					addMoreText('Server Foda', -45);
 				case 4:
-					addMoreText('Equipe Server Foda', -40);
+					addMoreText('apresentam', -40);
 					sfSpr.visible = true;
 				case 5:
 					deleteCoolText();
@@ -598,9 +598,9 @@ class TitleState extends MusicBeatState
 				case 10:
 					createCoolText([curWacky[0]]);
 				case 11:
-					addMoreText(curWacky[1], 15);
+					addMoreText(curWacky[1], 20);
 				case 12:
-					addMoreText(curWacky[2], 30);
+					addMoreText(curWacky[2], 42);
 				case 13:
 					deleteCoolText();
 				case 14:
