@@ -52,7 +52,6 @@ class FlashingState extends MusicBeatState
 
 			var back:Bool = controls.BACK;
 			if (controls.ACCEPT || back) {
-				FlxG.sound.music.fadeOut(0.5, 0);
 				leftState = true;
 				FlxTransitionableState.skipNextTransIn = true;
 				FlxTransitionableState.skipNextTransOut = true;
@@ -80,6 +79,7 @@ class FlashingState extends MusicBeatState
 						}
 					});
 				}
+				FlxG.sound.music.fadeOut(0.5, 0);
 			}
 		}
 		super.update(elapsed);
