@@ -55,6 +55,7 @@ class FlashingState extends MusicBeatState
 				leftState = true;
 				FlxTransitionableState.skipNextTransIn = true;
 				FlxTransitionableState.skipNextTransOut = true;
+				FlxG.sound.music.fadeOut(0.5, 0);
 				if(!back) {
 					ClientPrefs.data.flashing = false;
 					ClientPrefs.saveSettings();
@@ -65,7 +66,7 @@ class FlashingState extends MusicBeatState
 						new FlxTimer().start(0.5, function (tmr:FlxTimer) {
 							MusicBeatState.switchState(new TitleState());
 							//FlxG.sound.music.fadeOut(0.5, 0);
-							FlxG.sound.playMusic('');
+							FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
 						});
 					});
 				} else {
@@ -77,7 +78,7 @@ class FlashingState extends MusicBeatState
 						onComplete: function (twn:FlxTween) {
 							MusicBeatState.switchState(new TitleState());
 							//FlxG.sound.music.fadeOut(0.5, 0);
-							FlxG.sound.playMusic('');
+							FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
 						}
 					});
 				}
