@@ -45,6 +45,7 @@ class TitleState extends MusicBeatState
 
 	public static var initialized:Bool = false;
 
+	var bg:FlxSprite;
 	var blackScreen:FlxSprite;
 	var credGroup:FlxGroup;
 	var credTextShit:Alphabet;
@@ -197,7 +198,7 @@ class TitleState extends MusicBeatState
 		Conductor.bpm = titleJSON.bpm;
 		persistentUpdate = true;
 
-		var bg:FlxSprite = new FlxSprite();
+		bg = new FlxSprite();
 		bg.antialiasing = ClientPrefs.data.antialiasing;
 
 		if (titleJSON.backgroundSprite != null && titleJSON.backgroundSprite.length > 0 && titleJSON.backgroundSprite != "none"){
@@ -408,6 +409,7 @@ class TitleState extends MusicBeatState
 
 		if (initialized && !transitioning && skippedIntro)
 		{
+			bg.width += 0.01 / (ClientPrefs.data.framerate / 60); // trollwide
 			if (newTitle/* && !pressedEnter*/)
 			{
 				var timer:Float = titleTimer;
