@@ -24,7 +24,7 @@ class FlashingState extends MusicBeatState
 		bg.screenCenter(X);
 		add(bg);
 
-		ni = new Alphabet(0, 120, 'Cuidado!', true);
+		ni = new Alphabet(0, 130, 'Cuidado!', true);
 		ni.screenCenter(X);
 		add(ni);
 		var guh:String = 'Este mod contém algumas luzes piscantes!\n
@@ -63,7 +63,7 @@ class FlashingState extends MusicBeatState
 					FlxTween.tween(bg, {alpha: 0}, 0.9);
 					FlxTween.tween(ni, {alpha: 0}, 0.95);
 					FlxFlicker.flicker(warnText, 1, 0.1, false, true, function(flk:FlxFlicker) {
-						new FlxTimer().start(0.2, function (tmr:FlxTimer) {
+						new FlxTimer().start(0.5, function (tmr:FlxTimer) {
 							MusicBeatState.switchState(new TitleState());
 							//FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
 						});
