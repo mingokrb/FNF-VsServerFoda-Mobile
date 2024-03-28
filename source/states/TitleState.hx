@@ -606,9 +606,9 @@ class TitleState extends MusicBeatState
 				case 14:
 					addMoreText('GET');
 				case 15:
-					addMoreText('CAUE', 20);
+					addMoreText('CAUE', 30);
 				case 16:
-					addMoreText('ROLLED', 42); // credTextShit.text += '\nFunkin';
+					addMoreText('ROLLED', 63); // credTextShit.text += '\nFunkin';
 
 				case 17:
 					skipIntro();
