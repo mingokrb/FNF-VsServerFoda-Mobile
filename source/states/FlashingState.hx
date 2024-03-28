@@ -19,7 +19,7 @@ class FlashingState extends MusicBeatState
 		super.create();
 
 		bg = new FlxBackdrop(Paths.getSharedPath('backdrop.png')); //new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
-		bg.alpha = 0.2;
+		bg.alpha = 0.3;
 		bg.updateHitbox();
 		bg.screenCenter(X);
 		add(bg);
@@ -64,7 +64,8 @@ class FlashingState extends MusicBeatState
 					FlxFlicker.flicker(warnText, 1, 0.1, false, true, function(flk:FlxFlicker) {
 						new FlxTimer().start(0.5, function (tmr:FlxTimer) {
 							MusicBeatState.switchState(new TitleState());
-							//FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
+							//FlxG.sound.music.fadeOut(0.5, 0);
+							FlxG.sound.playMusic('');
 						});
 					});
 				} else {
@@ -75,11 +76,11 @@ class FlashingState extends MusicBeatState
 						ease: FlxEase.quadOut,
 						onComplete: function (twn:FlxTween) {
 							MusicBeatState.switchState(new TitleState());
-							//FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
+							//FlxG.sound.music.fadeOut(0.5, 0);
+							FlxG.sound.playMusic('');
 						}
 					});
 				}
-				FlxG.sound.music.fadeOut(0.5, 0);
 			}
 		}
 		super.update(elapsed);
