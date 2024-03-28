@@ -24,7 +24,7 @@ class FlashingState extends MusicBeatState
 		bg.screenCenter(X);
 		add(bg);
 
-		ni = new Alphabet(0, 110, 'Cuidado!', true);
+		ni = new Alphabet(0, 120, 'Cuidado!', true);
 		ni.screenCenter(X);
 		add(ni);
 		var guh:String = 'Este mod contém algumas luzes piscantes!\n
@@ -33,7 +33,7 @@ class FlashingState extends MusicBeatState
 		Você foi avisado(a)!';
 
 		controls.isInSubstate = false; // qhar I hate it
-		warnText = new FlxText(0, FlxG.height * 0.3, FlxG.width, guh, 16);
+		warnText = new FlxText(0, FlxG.height * 0.35, FlxG.width, guh, 16);
 		warnText.setFormat(Paths.font('comicsans.ttf'), 32, FlxColor.WHITE, CENTER, FlxTextBorderStyle.OUTLINE, FlxColor.BLACK);
 		//warnText.updateHitbox();
 		warnText.screenCenter(X);
@@ -52,9 +52,7 @@ class FlashingState extends MusicBeatState
 
 			var back:Bool = controls.BACK;
 			if (controls.ACCEPT || back) {
-				//FlxG.sound.music.fadeOut(0.5, 0, function(twn:FlxTween) {
-					//FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
-				//});
+				FlxG.sound.music.fadeOut(0.5, 0);
 				leftState = true;
 				FlxTransitionableState.skipNextTransIn = true;
 				FlxTransitionableState.skipNextTransOut = true;
@@ -62,23 +60,23 @@ class FlashingState extends MusicBeatState
 					ClientPrefs.data.flashing = false;
 					ClientPrefs.saveSettings();
 					FlxG.sound.play(Paths.sound('confirmMenu'));
-					FlxTween.tween(bg, {alpha: 0}, 1);
-					FlxTween.tween(ni, {alpha: 0}, 1.1);
+					FlxTween.tween(bg, {alpha: 0}, 0.9);
+					FlxTween.tween(ni, {alpha: 0}, 0.95);
 					FlxFlicker.flicker(warnText, 1, 0.1, false, true, function(flk:FlxFlicker) {
 						new FlxTimer().start(0.2, function (tmr:FlxTimer) {
-							FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
 							MusicBeatState.switchState(new TitleState());
+							//FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
 						});
 					});
 				} else {
 					FlxG.sound.play(Paths.sound('cancelMenu'));
-					FlxTween.tween(bg, {alpha: 0}, 0.65);
-					FlxTween.tween(ni, {alpha: 0}, 0.7);
+					FlxTween.tween(bg, {alpha: 0}, 0.5);
+					FlxTween.tween(ni, {alpha: 0}, 0.55);
 					FlxTween.tween(warnText, {alpha: 0}, 0.6, {
 						ease: FlxEase.quadOut,
 						onComplete: function (twn:FlxTween) {
-							FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
 							MusicBeatState.switchState(new TitleState());
+							//FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
 						}
 					});
 				}
