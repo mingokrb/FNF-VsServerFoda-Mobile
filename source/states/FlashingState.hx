@@ -19,7 +19,7 @@ class FlashingState extends MusicBeatState
 		super.create();
 
 		bg = new FlxBackdrop(Paths.getSharedPath('backdrop.png')); //new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
-		bg.alpha = 0.4;
+		bg.alpha = 0.3;
 		bg.updateHitbox();
 		bg.screenCenter(X);
 		add(bg);
