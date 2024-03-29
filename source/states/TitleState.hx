@@ -10,6 +10,7 @@ import flixel.graphics.frames.FlxFrame;
 import flixel.group.FlxGroup;
 import flixel.input.gamepad.FlxGamepad;
 import haxe.Json;
+import haxe.Timer;
 
 import openfl.Assets;
 import openfl.display.Bitmap;
@@ -53,6 +54,8 @@ class TitleState extends MusicBeatState
 	var ngSpr:FlxSprite;
 	var sfSpr:FlxSprite;
 	var wegaSpr:FlxSprite;
+
+	var bgscaleTimer:Timer;
 	
 	var titleTextColors:Array<FlxColor> = [0xFF33FFFF, 0xFF3333CC];
 	var titleTextAlphas:Array<Float> = [1, .64];
@@ -409,7 +412,10 @@ class TitleState extends MusicBeatState
 
 		if (initialized && !transitioning && skippedIntro)
 		{
-			bg.scale.x += 0.0000000000000000000000001; // / (ClientPrefs.data.framerate / 60); // trollwide
+			bgscaleTimer = new Timer(250); // ms
+			bgscaleTimer.run = function() {
+				bg.scale.x += 0.01; // / (ClientPrefs.data.framerate / 60); // trollwide
+			}
 			if (newTitle/* && !pressedEnter*/)
 			{
 				var timer:Float = titleTimer;
@@ -572,6 +578,7 @@ class TitleState extends MusicBeatState
 					FlxG.sound.play(Paths.music('freakyMenu')).onComplete = function() {
 						FlxG.sound.play(Paths.sound('wega'), 1);
 						wegaSpr.visible = true;
+						bgscaleTimer.stop();
 						new FlxTimer().start(0.8, function(tmr:FlxTimer) {
 							System.exit(0);
 						});
