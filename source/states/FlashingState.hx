@@ -28,8 +28,8 @@ class FlashingState extends MusicBeatState
 		ni.screenCenter(X);
 		add(ni);
 		var guh:String = 'Este mod contém algumas luzes piscantes!\n
-		Aperte A/ENTER para desativá-las ou ir para o Menu de Opções.\n
-		Aperte B/ESC para ignorar essa mensagem.\n
+		Aperte [A/ENTER] para desativá-las ou ir para o Menu de Opções.\n
+		Aperte [B/ESC] para ignorar essa mensagem.\n
 		Você foi avisado(a)!';
 
 		controls.isInSubstate = false; // qhar I hate it
@@ -39,7 +39,7 @@ class FlashingState extends MusicBeatState
 		warnText.screenCenter(X);
 		add(warnText);
 
-		FlxG.sound.playMusic(Paths.music('offsetSong'), 0.7, true);
+		//FlxG.sound.playMusic(Paths.music('offsetSong'), 0.7, true);
 		addVirtualPad('NONE', 'A_B');
 	}
 
