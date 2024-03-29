@@ -19,7 +19,7 @@ class FlashingState extends MusicBeatState
 		super.create();
 
 		bg = new FlxBackdrop(Paths.getSharedPath('backdrop.png')); //new FlxSprite().makeGraphic(FlxG.width, FlxG.height, FlxColor.BLACK);
-		bg.alpha = 0.3;
+		bg.alpha = 0.4;
 		bg.updateHitbox();
 		bg.screenCenter(X);
 		add(bg);
@@ -28,8 +28,8 @@ class FlashingState extends MusicBeatState
 		ni.screenCenter(X);
 		add(ni);
 		var guh:String = 'Este mod contém algumas luzes piscantes!\n
-		Aperte [A/ENTER] para desativá-las ou ir para o Menu de Opções.\n
-		Aperte [B/ESC] para ignorar essa mensagem.\n
+		Aperte [A/ENTER] para desativá-las agora ou acesse o menu Opções.\n
+		Aperte [B/ESC] para ignorar essa mensagem e mantê-las ativadas.\n
 		Você foi avisado(a)!';
 
 		controls.isInSubstate = false; // qhar I hate it
