@@ -24,7 +24,7 @@ class FlashingState extends MusicBeatState
 		bg.screenCenter(X);
 		add(bg);
 
-		ni = new Alphabet(0, 130, 'Cuidado!', true);
+		ni = new Alphabet(0, 132, 'Cuidado!', true);
 		ni.screenCenter(X);
 		add(ni);
 		var guh:String = 'Este mod contém algumas luzes piscantes!\n
@@ -55,7 +55,7 @@ class FlashingState extends MusicBeatState
 				leftState = true;
 				FlxTransitionableState.skipNextTransIn = true;
 				FlxTransitionableState.skipNextTransOut = true;
-				FlxG.sound.music.fadeOut(0.5, 0);
+				//FlxG.sound.music.fadeOut(0.5, 0);
 				if(!back) {
 					ClientPrefs.data.flashing = false;
 					ClientPrefs.saveSettings();
@@ -65,8 +65,9 @@ class FlashingState extends MusicBeatState
 					FlxFlicker.flicker(warnText, 1, 0.1, false, true, function(flk:FlxFlicker) {
 						new FlxTimer().start(0.5, function (tmr:FlxTimer) {
 							MusicBeatState.switchState(new TitleState());
+							//FlxG.sound.music.volume(0);
 							//FlxG.sound.music.fadeOut(0.5, 0);
-							FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
+							//FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
 						});
 					});
 				} else {
@@ -78,7 +79,7 @@ class FlashingState extends MusicBeatState
 						onComplete: function (twn:FlxTween) {
 							MusicBeatState.switchState(new TitleState());
 							//FlxG.sound.music.fadeOut(0.5, 0);
-							FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
+							//FlxG.sound.playMusic(Paths.music('freakyMenu'), 0);
 						}
 					});
 				}
