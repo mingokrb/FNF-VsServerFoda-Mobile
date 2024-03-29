@@ -570,7 +570,7 @@ class TitleState extends MusicBeatState
 				case 1:
 					//FlxG.sound.music.stop();
 					FlxG.sound.play(Paths.music('freakyMenu')).onComplete = function() {
-						FlxG.sound.play(Paths.sound('wega'), 2);
+						FlxG.sound.play(Paths.sound('wega'), 1);
 						wegaSpr.visible = true;
 						new FlxTimer().start(0.8, function(tmr:FlxTimer) {
 							System.exit(0);
