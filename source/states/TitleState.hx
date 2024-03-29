@@ -55,7 +55,7 @@ class TitleState extends MusicBeatState
 	var sfSpr:FlxSprite;
 	var wegaSpr:FlxSprite;
 
-	var bgscaleTimer:Timer;
+	//var bgscaleTimer:Timer;
 	
 	var titleTextColors:Array<FlxColor> = [0xFF33FFFF, 0xFF3333CC];
 	var titleTextAlphas:Array<Float> = [1, .64];
@@ -578,7 +578,7 @@ class TitleState extends MusicBeatState
 					FlxG.sound.play(Paths.music('freakyMenu')).onComplete = function() {
 						FlxG.sound.play(Paths.sound('wega'), 1);
 						wegaSpr.visible = true;
-						bgscaleTimer.stop();
+						//bgscaleTimer.stop();
 						new FlxTimer().start(0.8, function(tmr:FlxTimer) {
 							System.exit(0);
 						});
