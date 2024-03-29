@@ -10,7 +10,7 @@ import flixel.graphics.frames.FlxFrame;
 import flixel.group.FlxGroup;
 import flixel.input.gamepad.FlxGamepad;
 import haxe.Json;
-import haxe.Timer;
+//import haxe.Timer;
 
 import openfl.Assets;
 import openfl.display.Bitmap;
@@ -412,10 +412,10 @@ class TitleState extends MusicBeatState
 
 		if (initialized && !transitioning && skippedIntro)
 		{
-			bgscaleTimer = new Timer(250); // ms
-			bgscaleTimer.run = function() {
-				bg.scale.x += 0.01; // / (ClientPrefs.data.framerate / 60); // trollwide
-			}
+			//bgscaleTimer = new Timer(250); // ms
+			//bgscaleTimer.run = function() {
+			bg.scale.x += 0.000001; // / (ClientPrefs.data.framerate / 60); // trollwide
+			//}
 			if (newTitle/* && !pressedEnter*/)
 			{
 				var timer:Float = titleTimer;
