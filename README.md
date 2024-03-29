@@ -6,6 +6,7 @@ Port mobile oficial de **Vs. Server Foda**, um mod brasileiro de Friday Night Fu
 # Instalação
 * Vá para a página [Releases](https://github.com/mingokrb/FNF-VsServerFoda-Mobile/releases) e faça o download do arquivo `ServerFoda-release.apk` mais recente
 * Após o download, instale o `.apk` baixado tocando na notificação ou através de um gerenciador de arquivos
+  * Caso seja solicitada uma permissão para instalar apps desconhecidos, permita - isso ocorre quando o usuário tenta instalar um app que não se encontra na loja de aplicativos padrão do dispositivo (geralmente arquivos no formato `.apk`)
 * Abra o jogo e toque em `OK` para iniciar o processo de cópia dos arquivos do jogo
 * Depois que o processo for concluído, o jogo deve iniciar normalmente
 
