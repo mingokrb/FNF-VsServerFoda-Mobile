@@ -409,7 +409,7 @@ class TitleState extends MusicBeatState
 
 		if (initialized && !transitioning && skippedIntro)
 		{
-			bg.scale.x += 0.01 / (ClientPrefs.data.framerate / 60); // trollwide
+			bg.scale.x += 0.0000000000000000000000001; // / (ClientPrefs.data.framerate / 60); // trollwide
 			if (newTitle/* && !pressedEnter*/)
 			{
 				var timer:Float = titleTimer;
