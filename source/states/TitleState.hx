@@ -414,7 +414,7 @@ class TitleState extends MusicBeatState
 		{
 			//bgscaleTimer = new Timer(250); // ms
 			//bgscaleTimer.run = function() {
-			bg.scale.x += 0.000001; // / (ClientPrefs.data.framerate / 60); // trollwide
+			bg.scale.x += 0.001; // / (ClientPrefs.data.framerate / 60); // trollwide
 			//}
 			if (newTitle/* && !pressedEnter*/)
 			{
